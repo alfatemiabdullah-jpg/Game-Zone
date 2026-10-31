@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Zone — Your Gaming Universe</title>
+<style>
+:root{--bg:#0c0a1c;--panel:#17132b;--panel2:#211a3b;--line:#302653;--muted:#aaa4c4;--white:#f8f6ff;--purple:#8d5cff;--cyan:#4fd7ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% 5%,#30204d 0,transparent 38%),radial-gradient(ellipse at 4% 45%,#172b51 0,transparent 35%),var(--bg);color:var(--white);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;min-height:100vh}
+.app{max-width:1600px;margin:0 auto;min-height:100vh;display:grid;grid-template-columns:218px 1fr;background:rgba(9,7,22,.5);border:1px solid #ffffff12}
+.sidebar{border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;gap:24px;background:linear-gradient(180deg,#17264b99,#100d22cc)}
+.brand{display:flex;align-items:center;gap:11px;font-size:22px;font-weight:900;letter-spacing:-.7px;padding:3px 8px 22px}.brandmark{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,#fff,#d9d3ff);display:grid;place-items:center;color:#19132e;font-size:23px;font-weight:1000}
+.nav{display:grid;gap:8px}.nav button{border:0;background:transparent;color:#c9c3dc;text-align:left;padding:13px 12px;border-radius:12px;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:12px}.nav button:hover,.nav button.active{background:linear-gradient(90deg,#8055f044,#6b52c422);color:white}.nav .ico{width:19px;text-align:center;font-size:16px}
+.controller{margin-top:auto;border:1px solid #45346d;background:linear-gradient(145deg,#201737,#101020);border-radius:20px;padding:16px;overflow:hidden}.controller h3{margin:0 0 12px;font-size:16px}.ring{width:62px;height:62px;border-radius:50%;border:4px solid #26364b;border-top-color:#39d88a;border-right-color:#39d88a;display:grid;place-items:center;font-size:13px;font-weight:800;color:#62e5a5}.controller p{font-size:11px;color:var(--muted);line-height:1.5}
+main{min-width:0}.topbar{height:76px;border-bottom:1px solid #302653;padding:0 28px;display:flex;align-items:center;gap:18px}.search{max-width:460px;flex:1;position:relative}.search input{width:100%;padding:13px 16px 13px 42px;border-radius:28px;border:1px solid #3b2d68;background:#1a1535;color:white;outline:none}.search input:focus{border-color:#9874ff}.search span{position:absolute;left:15px;top:10px;color:#aaa;font-size:18px}.profile{margin-left:auto;display:flex;align-items:center;gap:10px;background:#ffffff10;padding:7px 12px;border-radius:24px;font-size:12px}.avatar{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffbb73,#bd5f89);font-size:18px}.gear{border:1px solid #51436e;color:white;background:#ffffff10;border-radius:50%;width:40px;height:40px;cursor:pointer}
+.content{padding:26px 28px 34px}.section-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 17px}.section-head h2{font-size:19px;margin:0;letter-spacing:-.4px}.section-head small{color:var(--muted)}.games{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.game{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:linear-gradient(155deg,var(--tint),#171329 75%);min-width:0;transition:.2s;position:relative}.game:hover{transform:translateY(-4px);border-color:#8061d6;box-shadow:0 14px 35px #0005}.game-art{height:205px;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 50%,var(--glow),transparent 66%)}.game-art:before,.game-art:after{content:"";position:absolute;border:1px solid #ffffff18;border-radius:50%;width:190px;height:190px}.game-art:after{width:250px;height:250px}.emoji{font-size:92px;filter:drop-shadow(0 14px 10px #0007);z-index:1;transform:translateY(3px)}.tag{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:#ffffff18;border:1px solid #ffffff1c;border-radius:20px;padding:5px 13px;font-size:10px;white-space:nowrap;z-index:2}.rating{position:absolute;bottom:0;left:50%;transform:translate(-50%,50%);background:#382b50;border:1px solid #7862a6;border-radius:20px;padding:5px 10px;font-size:11px;z-index:3}.game-info{padding:21px 14px 14px;text-align:center;border-top:1px solid #ffffff14;background:#0e0c1e99}.game-info h3{font-size:15px;margin:5px 0 4px}.game-info p{font-size:11px;color:#aaa4c4;margin:0 0 13px;min-height:16px}.play{display:block;text-decoration:none;color:white;font-size:12px;font-weight:800;padding:10px 12px;border-radius:22px;background:linear-gradient(90deg,var(--button),var(--button2));box-shadow:0 5px 18px color-mix(in srgb,var(--button) 30%,transparent)}.play:hover{filter:brightness(1.15)}
+.lower{display:grid;grid-template-columns:1.45fr .8fr .85fr;gap:15px;margin-top:22px}.panel{border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#1b1630d9,#141126e8);padding:17px;min-width:0}.panel h2{font-size:17px;margin:0 0 14px}.rewards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.reward{border-radius:15px;padding:13px;min-height:105px;background:linear-gradient(115deg,#4b477a,#b8bed4);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:6px;overflow:hidden}.reward:nth-child(2){background:linear-gradient(115deg,#453e7c,#b83c62)}.reward:nth-child(3){background:linear-gradient(115deg,#463b78,#9d634c)}.reward:nth-child(4){background:linear-gradient(115deg,#333b83,#d5a62b)}.reward strong{font-size:13px;display:block}.reward small{font-size:10px;opacity:.85;display:block;margin-top:8px}.reward span{font-size:40px;filter:drop-shadow(0 5px 5px #0004)}.switch-card{display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(circle at 50% 30%,#087e80,#102d3b 72%)}.switch-art{text-align:center;font-size:76px;margin:8px 0}.switch-card p{font-size:11px;color:#c5d9df;text-align:center}.switch-card a{display:block;text-align:center;text-decoration:none;color:white;background:linear-gradient(90deg,#ff6c00,#e92718);padding:10px;border-radius:22px;font-weight:800;font-size:12px}.leader .rank{display:flex;align-items:center;gap:10px;padding:8px 2px;border-bottom:1px solid #ffffff12;font-size:12px}.leader .rank:last-child{border:0}.rank .face{font-size:22px}.rank small{margin-left:auto;color:#c8b8ff}.empty{display:none;text-align:center;padding:35px;color:var(--muted);grid-column:1/-1}
+footer{color:#807997;text-align:center;font-size:10px;padding:20px}
+.toast{position:fixed;bottom:20px;right:20px;background:#211a3b;border:1px solid #7559bd;border-radius:12px;padding:12px 16px;opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}
+@media(max-width:1100px){.games{grid-template-columns:repeat(2,minmax(0,1fr))}.lower{grid-template-columns:1fr 1fr}.leader{grid-column:1/-1}}
+@media(max-width:700px){.app{grid-template-columns:1fr}.sidebar{padding:12px;border-right:0;border-bottom:1px solid var(--line);gap:8px}.brand{padding:4px 8px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:9px}.controller{display:none}.topbar{padding:12px 14px;height:auto;flex-wrap:wrap}.profile{font-size:10px}.content{padding:20px 14px}.games{gap:10px}.game-art{height:145px}.emoji{font-size:68px}.game-info{padding:19px 9px 10px}.lower{grid-template-columns:1fr}.leader{grid-column:auto}.rewards{grid-template-columns:1fr 1fr}}
+@media(max-width:390px){.games{grid-template-columns:1fr}.game-art{height:180px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">G</div> Game Zone</div>
+  <nav class="nav">
+    <button class="active" data-section="dashboard"><span class="ico">▦</span> My Dashboard</button>
+    <button data-section="games"><span class="ico">🎮</span> Game's List</button>
+    <button data-section="store"><span class="ico">▣</span> Explore Store</button>
+    <button data-section="favorites"><span class="ico">♡</span> Favorites</button>
+    <button data-section="friends"><span class="ico">♟</span> Friends</button>
+    <button data-section="notifications"><span class="ico">♧</span> Notifications</button>
+  </nav>
+  <div class="controller"><h3>Controller</h3><div class="ring">75%</div><p>Your gaming setup is ready.<br>Keep playing and have fun!</p></div>
+</aside>
+<main>
+  <header class="topbar">
+    <div class="search"><span>⌕</span><input id="search" type="search" placeholder="Search for games..."></div>
+    <div class="profile"><div class="avatar">🎮</div><div><b>Game Player</b><br><span style="color:#aaa4c4">@player.gg</span></div>⌄</div>
+    <button class="gear" id="settings" title="Settings">⚙</button>
+  </header>
+  <div class="content">
+    <div class="section-head"><h2 id="heading">Popular Games</h2><small id="count">Your game collection</small></div>
+    <section class="games" id="games">
+      <article class="game" data-name="Subway Surfers" data-repo="Subway-Surfers" style="--tint:#4d1d53;--glow:#e84c7b;--button:#fb397b;--button2:#ad246d">
+        <div class="game-art"><div class="tag">YOUR PROJECT</div><div class="emoji">🚇</div><div class="rating">⭐ 4.8</div></div>
+        <div class="game-info"><h3>Subway Surfers</h3><p>Endless runner adventure</p><a class="play" target="_blank" rel="noopener" href="https://github.com/alfatemiabdullah-jpg/Subway-Surfers">Open Project ↗</a></div>
+      </article>
+      <article class="game" data-name="Minecraft" data-repo="minecraft" style="--tint:#273e2c;--glow:#8ac64d;--button:#7da832;--button2:#397b42">
+        <div class="game-art"><div class="tag">YOUR PROJECT</div><div class="emoji">⛏️</div><div class="rating">⭐ 4.9</div></div>
+        <div class="game-info"><h3>Minecraft</h3><p>Build, explore and create</p><a class="play" target="_blank" rel="noopener" href="https://github.com/alfatemiabdullah-jpg/minecraft">Open Project ↗</a></div>
+      </article>
+      <article class="game" data-name="Geometry Dash" data-repo="-Geometry-Dash-" style="--tint:#182e66;--glow:#257bff;--button:#39b9ff;--button2:#3269d9">
+        <div class="game-art"><div class="tag">YOUR PROJECT</div><div class="emoji">🔷</div><div class="rating">⭐ 4.7</div></div>
+        <div class="game-info"><h3>Geometry Dash</h3><p>Jump, dodge and beat the level</p><a class="play" target="_blank" rel="noopener" href="https://github.com/alfatemiabdullah-jpg/-Geometry-Dash-">Open Project ↗</a></div>
+      </article>
+      <article class="game" data-name="GTA 6" data-repo="-GTA6-" style="--tint:#63301d;--glow:#e58c2b;--button:#ff9b16;--button2:#d84b16">
+        <div class="game-art"><div class="tag">YOUR PROJECT</div><div class="emoji">🏎️</div><div class="rating">⭐ 4.7</div></div>
+        <div class="game-info"><h3>GTA 6</h3><p>Open-world action project</p><a class="play" target="_blank" rel="noopener" href="https://github.com/alfatemiabdullah-jpg/-GTA6-">Open Project ↗</a></div>
+      </article>
+      <article class="game" data-name="Counter Strike 2" data-repo="-cs2-" style="--tint:#3b3021;--glow:#d8a448;--button:#d69a37;--button2:#9c5d27">
+        <div class="game-art"><div class="tag">YOUR PROJECT</div><div class="emoji">🎯</div><div class="rating">⭐ 4.6</div></div>
+        <div class="game-info"><h3>Counter Strike 2</h3><p>Competitive tactical project</p><a class="play" target="_blank" rel="noopener" href="https://github.com/alfatemiabdullah-jpg/-cs2-">Open Project ↗</a></div>
+      </article>
+      <article class="game" data-name="Hill Climb Racing" data-repo="Hill-climbing-racing-game" style="--tint:#1b4850;--glow:#31b8a4;--button:#20b9a4;--button2:#247a9b">
+        <div class="game-art"><div class="tag">HTML GAME FOUND</div><div class="emoji">🚙</div><div class="rating">⭐ 4.8</div></div>
+        <div class="game-info"><h3>Hill Climb Racing</h3><p>Drive across hilly tracks</p><a class="play" target="_blank" rel="noopener" href="https://github.com/alfatemiabdullah-jpg/Hill-climbing-racing-game/blob/main/hill_climb_racing_style.html">Open HTML Game ↗</a></div>
+      </article>
+      <article class="game" data-name="Teams Challenge" data-repo="-Teams-Challenge-Game" style="--tint:#4c2946;--glow:#d45c9c;--button:#d44e9a;--button2:#7d48bd">
+        <div class="game-art"><div class="tag">HTML GAME FOUND</div><div class="emoji">🏆</div><div class="rating">⭐ 4.6</div></div>
+        <div class="game-info"><h3>Teams Challenge</h3><p>Challenge your friends</p><a class="play" target="_blank" rel="noopener" href="https://github.com/alfatemiabdullah-jpg/-Teams-Challenge-Game/blob/main/%D9%84%D8%B9%D8%A8%D8%A9%20%D8%AA%D8%AD%D8%AF%D9%8A%20%D8%A7%D9%84%D9%81%D8%B1%D9%82%20%D8%A7%D9%84%D9%83%D8%A8%D8%B1%D9%89.html">Open HTML Game ↗</a></div>
+      </article>
+      <article class="game" data-name="Assassin's Creed" data-repo="Assassin-s-Creed" style="--tint:#31313d;--glow:#8a8b9a;--button:#8c8fa8;--button2:#55586d">
+        <div class="game-art"><div class="tag">YOUR PROJECT</div><div class="emoji">🗡️</div><div class="rating">⭐ 4.5</div></div>
+        <div class="game-info"><h3>Assassin's Creed</h3><p>Adventure project</p><a class="play" target="_blank" rel="noopener" href="https://github.com/alfatemiabdullah-jpg/Assassin-s-Creed">Open Project ↗</a></div>
+      </article>
+      <div class="empty" id="empty">No games found. Try another search.</div>
+    </section>
+    <section class="lower">
+      <div class="panel"><h2>Quest Rewards</h2><div class="rewards">
+        <div class="reward"><div><strong>Find the next adventure</strong><small>🟡 99 Points · 20+ joined</small></div><span>👻</span></div>
+        <div class="reward"><div><strong>Heart of the new horizon</strong><small>🟡 56 Points · 20+ joined</small></div><span>❤️</span></div>
+        <div class="reward"><div><strong>The odd job quest</strong><small>🟡 40 Points · 20+ joined</small></div><span>🍄</span></div>
+        <div class="reward"><div><strong>Super star mission</strong><small>🟡 60 Points · 20+ joined</small></div><span>⭐</span></div>
+      </div></div>
+      <div class="panel switch-card"><h2>Gaming Setup</h2><div class="switch-art">🎮</div><p>Your personal game collection in one place.</p><a href="https://github.com/alfatemiabdullah-jpg" target="_blank" rel="noopener">Explore My GitHub ↗</a></div>
+      <div class="panel leader"><h2>Leaderboard</h2>
+        <div class="rank"><span class="face">🧑🏻‍🚀</span><b>Player One</b><small>1st · 1500 pts</small></div>
+        <div class="rank"><span class="face">🧑🏽‍🎤</span><b>Pixel Master</b><small>2nd · 1200 pts</small></div>
+        <div class="rank"><span class="face">👩🏻‍🎮</span><b>Game Star</b><small>3rd · 900 pts</small></div>
+        <div class="rank"><span class="face">🧑🏼</span><b>Speed Runner</b><small>700 pts</small></div>
+      </div>
+    </section>
+  </div>
+  <footer>GAME ZONE · Built for players · Your games, one place</footer>
+</main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const search=document.getElementById('search'),cards=[...document.querySelectorAll('.game')],heading=document.getElementById('heading'),empty=document.getElementById('empty'),count=document.getElementById('count'),toast=document.getElementById('toast');
+let section='dashboard',favorites=new Set();
+function notify(message){toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}
+function render(){
+ let q=search.value.trim().toLowerCase(),shown=0;
+ cards.forEach(card=>{
+  const match=card.dataset.name.toLowerCase().includes(q);
+  const favOk=section!=='favorites'||favorites.has(card.dataset.repo);
+  const visible=match&&favOk;
+  card.style.display=visible?'':'none';if(visible)shown++;
+ });
+ empty.style.display=shown?'none':'block';count.textContent=shown+' games shown';
+ heading.textContent=section==='favorites'?'Your Favorites':section==='store'?'Explore Game Store':section==='friends'?'Friends & Community':section==='notifications'?'Notifications':section==='games'?'All Games':'Popular Games';
+}
+search.addEventListener('input',render);
+document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');section=btn.dataset.section;
+ if(section==='friends'||section==='notifications'){notify(section==='friends'?'Friends feature is coming soon!':'You are all caught up!');section='dashboard';document.querySelector('[data-section="dashboard"]').classList.add('active');btn.classList.remove('active');}
+ if(section==='store')notify('Browse your projects below!');
+ render();
+}));
+cards.forEach(card=>{
+ const info=card.querySelector('.game-info');
+ const fav=document.createElement('button');fav.textContent='♡';fav.title='Add to favorites';fav.style.cssText='position:absolute;right:12px;top:12px;z-index:4;border:1px solid #ffffff35;background:#17132999;color:white;border-radius:50%;width:32px;height:32px;font-size:18px;cursor:pointer';
+ fav.addEventListener('click',()=>{if(favorites.has(card.dataset.repo)){favorites.delete(card.dataset.repo);fav.textContent='♡';notify('Removed from favorites')}else{favorites.add(card.dataset.repo);fav.textContent='♥';notify('Added to favorites')}if(section==='favorites')render()});
+ card.querySelector('.game-art').appendChild(fav);
+});
+document.getElementById('settings').addEventListener('click',()=>notify('Game Zone settings will be added soon.'));
+render();
+</script>
+</body>
+</html>
